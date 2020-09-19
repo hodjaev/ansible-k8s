@@ -15,7 +15,7 @@
       with_file:
         - ~/.ssh/id_rsa.pub
 
-    - name: Remove swapfile from /etc/fstab
+    - name: remove swapfile from /etc/fstab
       mount:
         name: "{{ item }}"
         fstype: swap
@@ -24,6 +24,6 @@
         - swap
         - none
 
-    - name: Disable swap
+    - name: disable swap
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
