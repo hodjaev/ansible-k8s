@@ -1,9 +1,9 @@
 [master]
-kube-master
+kube-master ansible_host=kube-master
 
 [workers]
-kube-node1
-kube-node2
+kube-node1 ansible_host=kube-node1
+kube-node2 ansible_host=kube-node2
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
