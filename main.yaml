@@ -1,0 +1,5 @@
+---
+- import_playbook: playbooks/kube-prerequisites.yaml
+- import_playbook: playbooks/kube-dependencies.yaml
+- import_playbook: playbooks/configure-master.yaml
+- import_playbook: playbooks/configure-workers.yaml
