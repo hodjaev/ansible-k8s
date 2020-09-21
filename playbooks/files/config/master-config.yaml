@@ -1,0 +1,11 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: kube-master.mshome.net
+  bindPort: 6443
+kind: ClusterConfiguration
+controlPlaneEndpoint: kube-master.mshome.net:6443
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.96.0.0/12
