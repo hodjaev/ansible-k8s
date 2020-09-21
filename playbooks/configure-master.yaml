@@ -1,8 +1,13 @@
 - hosts: master
   become: yes
   tasks:
+    - copy:
+        src: config/master-config.yaml
+        dest: /root/master-config.yaml
+
     - name: initialize the cluster
-      shell: kubeadm init --pod-network-cidr=10.244.0.0/16 >> cluster_initialized.txt
+      become: yes
+      shell: kubeadm init --config /root/master-config.yaml >> cluster_initialized.txt
       args:
         chdir: $HOME
         creates: cluster_initialized.txt
@@ -16,6 +21,7 @@
         mode: 0755
 
     - name: copy admin.conf to user's kube config
+      become: yes
       copy:
         src: /etc/kubernetes/admin.conf
         dest: /home/ubuntu/.kube/config
