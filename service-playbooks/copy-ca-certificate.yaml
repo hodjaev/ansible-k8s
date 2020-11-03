@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: copy file
+      copy:
+        src: certs/web01-ca.crt
+        dest: /usr/local/share/ca-certificates
+
+    - name: update root certificates
+      become: yes
+      command: update-ca-certificates
