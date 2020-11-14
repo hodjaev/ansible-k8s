@@ -1,0 +1,13 @@
+- name: Store known hosts of 'all' the hosts in the inventory file
+  hosts: localhost
+  connection: local
+  vars:
+    ssh_known_hosts_file: "{{ lookup('env','HOME') + '/.ssh/known_hosts' }}"
+    ssh_known_hosts: "{{ groups['all'] }}"
+  tasks:
+  - name: Add instances as known hosts
+    known_hosts:
+      path: "{{ ssh_known_hosts_file }}"
+      name: "{{ hostvars[item]['ansible_host'] }}"
+      key: "{{ lookup('pipe', 'ssh-keyscan -H {{ hostvars[item][\"ansible_host\"]}}') }}"
+    with_items: "{{ groups['all'] }}"
