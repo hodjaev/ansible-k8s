@@ -3,7 +3,7 @@
   tasks:
     - name: copy file
       copy:
-        src: certs/web01-ca.crt
+        src: certs/web01-dev.crt
         dest: /usr/local/share/ca-certificates
 
     - name: update root certificates
