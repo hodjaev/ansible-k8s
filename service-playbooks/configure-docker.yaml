@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: copy docker daemon.json config file
+      copy:
+        src: docker/daemon.json
+        dest: /etc/docker/daemon.json
+    
+    - name: restart docker
+      become: yes
+      command: systemctl restart docker
+    
