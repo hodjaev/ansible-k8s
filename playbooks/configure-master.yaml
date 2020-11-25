@@ -8,6 +8,11 @@
         chdir: $HOME
         creates: cluster_initialized.txt
 
+    - name: install acl
+      apt:
+        name: acl
+        state: present
+        
     - name: create .kube directory
       become: yes
       become_user: ubuntu
