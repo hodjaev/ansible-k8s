@@ -1,0 +1,6 @@
+- name: Clear user's history
+  hosts: all
+  tasks:
+  - become: yes
+    shell: "cat /dev/null > ~{{item}}/.bash_history"
+    with_items: ["ubuntu", "root"]
