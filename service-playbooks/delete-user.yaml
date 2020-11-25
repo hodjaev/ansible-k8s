@@ -1,0 +1,6 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: delete the '{{item}}' user
+      user: name={{item}} state=absent remove=yes
+      with_items: ["user1", "user2", "user3"]
