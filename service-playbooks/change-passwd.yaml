@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  vars:
+      password: LzkkEKMxwHiUzuK
+  tasks:
+    - name: change ubuntu's password
+      user: name=ubuntu password={{ password | password_hash('sha512') }}
